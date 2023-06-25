@@ -55,7 +55,7 @@ public class DummyTest {
 
         skyBox = new SkyBox();
         try{
-            m = ObjLoader.loadModelwFace(new File("Project Grafkom-22/Main/src/blenderAssets/Character.obj"), false);
+            m = ObjLoader.loadModelwFace(new File("Project Grafkom-22/Main/src/blenderAssets/mainCharacter.obj"), false);
         }catch(FileNotFoundException e){
             e.printStackTrace();
         }catch (IOException e){

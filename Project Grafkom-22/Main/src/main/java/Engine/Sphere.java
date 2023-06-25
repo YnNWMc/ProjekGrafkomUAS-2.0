@@ -797,11 +797,10 @@ public class Sphere extends Circle3D {
         return Math.min(Math.max(value, min), max);
     }
 
-    public boolean detectCollision(Vector3D p, Model o, double thresh) {
-        List<Vector3f> vertices = o.getVertices();
-        List<Vector3f> indicies = o.getIndices();
+    public boolean detectCollision(Vector3D p, double thresh) {
+        List<Vector3f> vertices = this.getVertices();
 
-        for (int i = 0; i < indicies.size()/3; i++) {
+        for (int i = 0; i < vertices.size()/3; i++) {
             Vector3D a = new Vector3D(
                     vertices.get(i).x + position.x,
                     vertices.get(i).y + position.y,
@@ -820,9 +819,11 @@ public class Sphere extends Circle3D {
 
 
             if (sdfTriangle(p, a, b, c) < thresh) {
+                System.out.println("COLLIDE");
                 return true;
             }
         }
+        System.out.println("GA COLLIDE");
         return false;
     }
 

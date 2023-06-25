@@ -130,17 +130,18 @@ public class Sphere extends Circle3D {
                 new Vector3f(0.0f,20f,4.0f)//lampu atas
         };
 
+        // lampu tidur
+        uniformsMap.setUniform("pointLights[" + lampuTidur + "].position", _pointLightPositions[lampuTidur]);
+        uniformsMap.setUniform("pointLights[" + lampuTidur + "].ambient", new Vector3f(0.01f, 0.01f, 0.01f));
+        uniformsMap.setUniform("pointLights[" + lampuTidur + "].diffuse", new Vector3f(0.6f, 0.6f, 0.6f));
+        uniformsMap.setUniform("pointLights[" + lampuTidur + "].specular", new Vector3f(0.0f, 0.0f, 0.0f));
+        uniformsMap.setUniform("pointLights[" + lampuTidur + "].constant", (1f));
+
+        //distance 50
+        uniformsMap.setUniform("pointLights[" + lampuTidur + "].linear", (0.07f));
+        uniformsMap.setUniform("pointLights[" + lampuTidur + "].quadratic", (0.017f));
+
         if(!cek) {//kalau mati
-            // lampu tidur
-            // lampuny full mati
-            uniformsMap.setUniform("pointLights[" + lampuTidur + "].position", _pointLightPositions[lampuTidur]);
-            uniformsMap.setUniform("pointLights[" + lampuTidur + "].ambient", new Vector3f(0.0f, 0.0f, 0.0f));
-            uniformsMap.setUniform("pointLights[" + lampuTidur + "].diffuse", new Vector3f(0.f, 0.f, 0.f));
-            uniformsMap.setUniform("pointLights[" + lampuTidur + "].specular", new Vector3f(0.0f, 0.0f, 0.0f));
-            uniformsMap.setUniform("pointLights[" + lampuTidur + "].constant", (1f));
-            //distance 32
-            uniformsMap.setUniform("pointLights[" + lampuTidur + "].linear", (0.f));
-            uniformsMap.setUniform("pointLights[" + lampuTidur + "].quadratic", (0.0f));
 
             //Lampu Atas
             uniformsMap.setUniform("pointLights[" + lampuAtas + "].position", _pointLightPositions[lampuAtas]);
@@ -174,16 +175,6 @@ public class Sphere extends Circle3D {
 
         }
         else{// kalau lampu nyala
-            // lampu tidur
-            uniformsMap.setUniform("pointLights[" + lampuTidur + "].position", _pointLightPositions[lampuTidur]);
-            uniformsMap.setUniform("pointLights[" + lampuTidur + "].ambient", new Vector3f(0.01f, 0.01f, 0.01f));
-            uniformsMap.setUniform("pointLights[" + lampuTidur + "].diffuse", new Vector3f(0.6f, 0.6f, 0.6f));
-            uniformsMap.setUniform("pointLights[" + lampuTidur + "].specular", new Vector3f(0.0f, 0.0f, 0.0f));
-            uniformsMap.setUniform("pointLights[" + lampuTidur + "].constant", (1f));
-
-            //distance 50
-            uniformsMap.setUniform("pointLights[" + lampuTidur + "].linear", (0.09f));
-            uniformsMap.setUniform("pointLights[" + lampuTidur + "].quadratic", (0.032f));
 
             //Lampu Atas
             uniformsMap.setUniform("pointLights[" + lampuAtas + "].position", _pointLightPositions[lampuAtas]);
@@ -201,14 +192,14 @@ public class Sphere extends Circle3D {
         if(flashLight) {
             uniformsMap.setUniform("spotLight.position", camera.getPosition());
             uniformsMap.setUniform("spotLight.direction", camera.getDirection());
-            uniformsMap.setUniform("spotLight.ambient", new Vector3f(1f, 1f, 1f));
-            uniformsMap.setUniform("spotLight.diffuse", new Vector3f(1.0f, 1.0f, 1.0f));
+            uniformsMap.setUniform("spotLight.ambient", new Vector3f(0.2f, 0.2f, 0.2f));
+            uniformsMap.setUniform("spotLight.diffuse", new Vector3f(2f, 2f, 2f));
             uniformsMap.setUniform("spotLight.specular", new Vector3f(1.0f, 1.0f, 1.0f));
             uniformsMap.setUniform("spotLight.constant", (1f));
-            uniformsMap.setUniform("spotLight.linear", (0.07f));
-            uniformsMap.setUniform("spotLight.quadratic", (0.017f));
-            uniformsMap.setUniform("spotLight.cutOff", (float) (Math.cos(Math.toRadians(70))));
-            uniformsMap.setUniform("spotLight.outerCutOff", (float) (Math.cos(Math.toRadians(50))));
+            uniformsMap.setUniform("spotLight.linear", (0.09f));
+            uniformsMap.setUniform("spotLight.quadratic", (0.032f));
+            uniformsMap.setUniform("spotLight.cutOff", (float) (Math.cos(Math.toRadians(12.5f))));
+            uniformsMap.setUniform("spotLight.outerCutOff", (float) (Math.cos(Math.toRadians(12.5f))));
 
         }
         else{

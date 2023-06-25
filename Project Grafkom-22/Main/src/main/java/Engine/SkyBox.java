@@ -68,12 +68,12 @@ public class SkyBox extends ShaderProgram
             };
 
     private final static String[] TEXTURE_FILE_NAMES = {
-            "Project Grafkom-22\\Main\\resources\\/skybox/right.png",
-            "Project Grafkom-22\\Main\\resources\\/skybox/left.png",
-            "Project Grafkom-22\\Main\\resources\\/skybox/top.png",
-            "Project Grafkom-22\\Main\\resources\\/skybox/bottom.png",
-            "Project Grafkom-22\\Main\\resources\\/skybox/front.png",
-            "Project Grafkom-22\\Main\\resources\\/skybox/back.png"};
+            "Project Grafkom-22\\Main\\resources\\/skybox/right2.png",
+            "Project Grafkom-22\\Main\\resources\\/skybox/left2.png",
+            "Project Grafkom-22\\Main\\resources\\/skybox/top2.png",
+            "Project Grafkom-22\\Main\\resources\\/skybox/bottom2.png",
+            "Project Grafkom-22\\Main\\resources\\/skybox/front2.png",
+            "Project Grafkom-22\\Main\\resources\\/skybox/back2.png"};
 
     int vao, vbo, textureId;
     UniformsMap uniformsMap;

@@ -108,7 +108,7 @@ public class TestRuang {
                     ),
                     new Vector4f(178f/255, 169f/255, 124f/255, 1.0f/255),0.0,
                     new ArrayList<>(List.of(0f, 0f, 0f)),
-                    20.0f,
+                    22.0f,
                     13.0f,
                     1.0f,
                     15, // Stack -->
@@ -146,9 +146,7 @@ public class TestRuang {
             Ruang.get(0).getChildObject().get(0).getChildObject().add(new Sphere(
                     shaderModuleDataList,
                     new ArrayList<>(
-                    ),
-//                new Vector4f(104f/255, 42f/255, 0, 1.0f/255),
-                    new Vector4f(255f/255, 255f/255, 1, 1.0f/255),
+                    ), new Vector4f(104f/255, 42f/255, 0, 1.0f/255),
                     0.0,
                     new ArrayList<>(List.of(0f, 0f, 0f)),
                     0.0f,
@@ -395,7 +393,7 @@ public class TestRuang {
                     new ArrayList<>(
                     ),
 //                new Vector4f(104f/255, 42f/255, 0, 1.0f/255),
-                    new Vector4f(255f/255, 255f/255, 255f/255, 1.0f/255),
+                    new Vector4f(255f/255, 187f/255, 166f/255, 1.0f/255),
                     0.0,
                     new ArrayList<>(List.of(0f, 0f, 0f)),
                     0.0f,
@@ -473,7 +471,7 @@ public class TestRuang {
                     shaderModuleDataList,
                     new ArrayList<>(
                     ),
-                    new Vector4f(255f/255, 255f/255, 255f/255, 1.0f/255),
+                    new Vector4f(0f/255, 185f/255, 31f/255, 1.0f/255),
                     0.0,
                     new ArrayList<>(List.of(0f, 0f, 0f)),
                     0.0f,
@@ -526,7 +524,7 @@ public class TestRuang {
                     shaderModuleDataList,
                     new ArrayList<>(
                     ),
-                    new Vector4f(255f/255, 255f/255, 255f/255, 1.0f/255),
+                    new Vector4f(165f/255, 38f/255, 0f/255, 1.0f/255),
                     0.0,
                     new ArrayList<>(List.of(0f, 0f, 0f)),
                     0.0f,
@@ -572,7 +570,7 @@ public class TestRuang {
                     shaderModuleDataList,
                     new ArrayList<>(
                     ),
-                    new Vector4f(255f/255, 255f/255, 255f/255, 1.0f/255),
+                    new Vector4f(247f/255, 255f/255, 0f/255, 1.0f/255),
                     0.0,
                     new ArrayList<>(List.of(0f, 0f, 0f)),
                     0.0f,
@@ -590,7 +588,7 @@ public class TestRuang {
                     shaderModuleDataList,
                     new ArrayList<>(
                     ),
-                    new Vector4f(255f/255, 255f/255, 255f/255, 1.0f/255),
+                    new Vector4f(247f/255, 255f/255, 0f/255, 1.0f/255),
                     0.0,
                     new ArrayList<>(List.of(0f, 0f, 0f)),
                     0.0f,
@@ -604,7 +602,6 @@ public class TestRuang {
             Ruang.get(0).getChildObject().get(8).scaleObject(0.8f,0.8f,0.8f);
             Ruang.get(0).getChildObject().get(8).translateObject(5.0f,0.9f,-6.6f);
 
-
             try{
                 m = ObjLoader.loadModelwFace(new File("Project Grafkom-22/Main/src/blenderAssets/toy2.obj"), false);
             }catch(FileNotFoundException e){
@@ -617,7 +614,7 @@ public class TestRuang {
                     shaderModuleDataList,
                     new ArrayList<>(
                     ),
-                    new Vector4f(255f/255, 255f/255, 255f/255, 1.0f/255),
+                    new Vector4f(255f/255, 0f/255, 0f/255, 1.0f/255),
                     0.0,
                     new ArrayList<>(List.of(0f, 0f, 0f)),
                     0.0f,
@@ -635,7 +632,7 @@ public class TestRuang {
                     shaderModuleDataList,
                     new ArrayList<>(
                     ),
-                    new Vector4f(255f/255, 255f/255, 255f/255, 1.0f/255),
+                    new Vector4f(255f/255, 0f/255, 0f/255, 1.0f/255),
                     0.0,
                     new ArrayList<>(List.of(0f, 0f, 0f)),
                     0.0f,
@@ -661,7 +658,7 @@ public class TestRuang {
                     shaderModuleDataList,
                     new ArrayList<>(
                     ),
-                    new Vector4f(255f/255, 255f/255, 255f/255, 1.0f/255),
+                    new Vector4f(213f/255, 0f/255, 255f/255, 1.0f/255),
                     0.0,
                     new ArrayList<>(List.of(0f, 0f, 0f)),
                     0.0f,
@@ -675,6 +672,8 @@ public class TestRuang {
             Ruang.get(0).getChildObject().get(10).scaleObject(5.0f,5.0f,5.0f);
             Ruang.get(0).getChildObject().get(10).translateObject(8.0f,0.1f,7.5f);
 
+
+            //Mainan motor
             try{
                 m = ObjLoader.loadModelwFace(new File("Project Grafkom-22/Main/src/blenderAssets/motorcycle.obj"), false);
             }catch(FileNotFoundException e){
@@ -682,12 +681,12 @@ public class TestRuang {
             }catch (IOException e){
                 e.printStackTrace();
             }
-            // Mainan motor
+            //Mainan motor
             Ruang.get(0).getChildObject().add(new Sphere(
                     shaderModuleDataList,
                     new ArrayList<>(
                     ),
-                    new Vector4f(255f/255, 255f/255, 255f/255, 1.0f/255),
+                    new Vector4f(0f/255, 0f/255, 0f/255, 1.0f/255),
                     0.0,
                     new ArrayList<>(List.of(0f, 0f, 0f)),
                     0.0f,
@@ -701,7 +700,6 @@ public class TestRuang {
             Ruang.get(0).getChildObject().get(11).scaleObject(2.0f,2.0f,2.0f);
             Ruang.get(0).getChildObject().get(11).translateObject(-5.0f,0.1f,8.5f);
 
-
             // tempat sampah
             try{
                 m = ObjLoader.loadModelwFace(new File("Project Grafkom-22/Main/src/blenderAssets/trash.obj"), false);
@@ -710,12 +708,12 @@ public class TestRuang {
             }catch (IOException e){
                 e.printStackTrace();
             }
-            // Mainan motor
+
             Ruang.get(0).getChildObject().add(new Sphere(
                     shaderModuleDataList,
                     new ArrayList<>(
                     ),
-                    new Vector4f(255f/255, 255f/255, 255f/255, 1.0f/255),
+                    new Vector4f(126f/255, 138f/255, 149f/255, 1.0f/255),
                     0.0,
                     new ArrayList<>(List.of(0f, 0f, 0f)),
                     0.0f,
@@ -738,7 +736,7 @@ public class TestRuang {
                     ),
                     new Vector4f(178f/255, 169f/255, 124f/255, 1.0f/255),0.0,
                     new ArrayList<>(List.of(0f, 0f, 0f)),
-                    20.0f,
+                    22.0f,
                     13.0f,
                     1.0f,
                     15, // Stack -->
@@ -746,6 +744,137 @@ public class TestRuang {
                     0));
 
             Ruang.get(0).getChildObject().get(0).getChildObject().get(11).translateObject(0.0f,6.5f,18.5f);
+
+            //Atap
+            Ruang.get(0).getChildObject().get(0).getChildObject().add(new Sphere(
+                    shaderModuleDataList,
+                    new ArrayList<>(List.of(
+                    )
+                    ),
+                    new Vector4f(107f/255, 107f/255, 107f/255, 1.0f/255),0.0,
+                    new ArrayList<>(List.of(0f, 0f, 0f)),
+                    28.0f,
+                    0.5f,
+                    34.0f,
+                    15, // Stack -->
+                    30, // Sector --> Titik
+                    0));
+
+            Ruang.get(0).getChildObject().get(0).getChildObject().get(12).translateObject(0.0f,13.25f,4.0f);
+
+            //Kunci
+
+            try{
+                m = ObjLoader.loadModelwFace(new File("Project Grafkom-22/Main/src/blenderAssets/key.obj"), false);
+            }catch(FileNotFoundException e){
+                e.printStackTrace();
+            }catch (IOException e){
+                e.printStackTrace();
+            }
+
+            Ruang.get(0).getChildObject().add(new Sphere(
+                    shaderModuleDataList,
+                    new ArrayList<>(
+                    ),
+                    new Vector4f(232f/255, 216f/255, 0f/255, 1.0f/255),
+                    0.0,
+                    new ArrayList<>(List.of(0f, 0f, 0f)),
+                    0.0f,
+                    0.0f,
+                    0.0f,
+                    15, // Stack -->
+                    30, // Sector --> Titik
+                    m));
+
+            Ruang.get(0).getChildObject().add(new Sphere(
+                    shaderModuleDataList,
+                    new ArrayList<>(
+                    ),
+                    new Vector4f(232f/255, 216f/255, 0f/255, 1.0f/255),
+                    0.0,
+                    new ArrayList<>(List.of(0f, 0f, 0f)),
+                    0.0f,
+                    0.0f,
+                    0.0f,
+                    15, // Stack -->
+                    30, // Sector --> Titik
+                    m));
+
+            Ruang.get(0).getChildObject().add(new Sphere(
+                    shaderModuleDataList,
+                    new ArrayList<>(
+                    ),
+                    new Vector4f(232f/255, 216f/255, 0f/255, 1.0f/255),
+                    0.0,
+                    new ArrayList<>(List.of(0f, 0f, 0f)),
+                    0.0f,
+                    0.0f,
+                    0.0f,
+                    15, // Stack -->
+                    30, // Sector --> Titik
+                    m));
+
+            Ruang.get(0).getChildObject().add(new Sphere(
+                    shaderModuleDataList,
+                    new ArrayList<>(
+                    ),
+                    new Vector4f(232f/255, 216f/255, 0f/255, 1.0f/255),
+                    0.0,
+                    new ArrayList<>(List.of(0f, 0f, 0f)),
+                    0.0f,
+                    0.0f,
+                    0.0f,
+                    15, // Stack -->
+                    30, // Sector --> Titik
+                    m));
+
+            Ruang.get(0).getChildObject().add(new Sphere(
+                    shaderModuleDataList,
+                    new ArrayList<>(
+                    ),
+                    new Vector4f(232f/255, 216f/255, 0f/255, 1.0f/255),
+                    0.0,
+                    new ArrayList<>(List.of(0f, 0f, 0f)),
+                    0.0f,
+                    0.0f,
+                    0.0f,
+                    15, // Stack -->
+                    30, // Sector --> Titik
+                    m));
+
+            Ruang.get(0).getChildObject().add(new Sphere(
+                    shaderModuleDataList,
+                    new ArrayList<>(
+                    ),
+                    new Vector4f(232f/255, 216f/255, 0f/255, 1.0f/255),
+                    0.0,
+                    new ArrayList<>(List.of(0f, 0f, 0f)),
+                    0.0f,
+                    0.0f,
+                    0.0f,
+                    15, // Stack -->
+                    30, // Sector --> Titik
+                    m));
+
+            Ruang.get(0).getChildObject().get(13).scaleObject(1.5f,1.5f,1.5f);
+//            Ruang.get(0).getChildObject().get(13).rotateObject((float)Math.toRadians(30.0f), 0.0f, -1.0f, 0.0f);
+            Ruang.get(0).getChildObject().get(13).translateObject(0.0f,0.2f,7.0f);
+
+            Ruang.get(0).getChildObject().get(14).scaleObject(1.0f,1.0f,1.0f);
+            Ruang.get(0).getChildObject().get(14).translateObject(4.0f,0.2f,15.0f);
+
+            Ruang.get(0).getChildObject().get(15).scaleObject(1.0f,1.0f,1.0f);
+            Ruang.get(0).getChildObject().get(15).translateObject(5.0f,0.2f,-9.0f);
+
+            Ruang.get(0).getChildObject().get(16).scaleObject(1.0f,1.0f,1.0f);
+            Ruang.get(0).getChildObject().get(16).translateObject(-6.0f,0.2f,-1.0f);
+
+            Ruang.get(0).getChildObject().get(17).scaleObject(1.0f,1.0f,1.0f);
+            Ruang.get(0).getChildObject().get(17).translateObject(-9.0f,0.2f,16.0f);
+
+            Ruang.get(0).getChildObject().get(18).scaleObject(1.0f,1.0f,1.0f);
+            Ruang.get(0).getChildObject().get(18).translateObject(8.0f,0.2f,-4.0f);
+
         }
 
 
@@ -853,30 +982,31 @@ public class TestRuang {
 
         //Kontrol Player
         if (window.isKeyPressed(GLFW_KEY_LEFT_CONTROL)) {
-            camera.moveForward(0.12f);
+            camera.moveForward(0.5f);
         }
 
         if (window.isKeyPressed(GLFW_KEY_LEFT_ALT)) {
-            camera.moveBackwards(0.12f);
+            camera.moveBackwards(0.5f);
         }
         if (window.isKeyPressed(GLFW_KEY_DOWN)) {
-            camera.moveDown(0.12f);
+            camera.moveDown(0.5f);
         }
 
         if (window.isKeyPressed(GLFW_KEY_UP)) {
-            camera.moveUp(0.12f);
+            camera.moveUp(0.5f);
         }
         if (window.isKeyPressed(GLFW_KEY_LEFT)) {
-            camera.moveLeft(0.12f);
+            camera.moveLeft(0.5f);
         }
 
         if (window.isKeyPressed(GLFW_KEY_RIGHT)) {
-            camera.moveRight(0.12f);
+            camera.moveRight(0.5f);
         }
 
         if (window.getMouseInput().isLeftButtonPressed()){
             Vector2f displayVec = window.getMouseInput().getDisplVec();
-            camera.addRotation((float)Math.toRadians(displayVec.x * 0.1f), (float) Math.toRadians(displayVec.y * 0.1f));
+//            camera.addRotation(tempRotate.x, (float) Math.toRadians(displayVec.y * 0.1f));
+            camera.addRotation((float) Math.toRadians(displayVec.x * 0.1f), (float) Math.toRadians(displayVec.y * 0.1f));
 
             tempRotate = new Vector2f (camera.getRotationX(), camera.getRotationY());
         }

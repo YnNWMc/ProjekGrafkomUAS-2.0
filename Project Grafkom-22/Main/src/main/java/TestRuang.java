@@ -27,6 +27,8 @@ public class TestRuang {
         int counterLampu =0;
         boolean flashLight = false;
         int counterFlashLight =0;
+        SkyBox skyBox ;
+
 
         ArrayList<Object> Ruang = new ArrayList<Object>();
         List<ShaderProgram.ShaderModuleData> shaderModuleDataList = Arrays.asList(
@@ -57,6 +59,10 @@ public class TestRuang {
             camera.setPosition(0.0f, 2.3f, 0.5f);
 
             camera.setRotation((float) Math.toRadians(0.0f), (float) Math.toRadians(180.0f));
+
+            //skybox
+            skyBox = new SkyBox();
+
 
             try{
                 m = ObjLoader.loadModelwFace(new File("Project Grafkom-22/Main/src/blenderAssets/mainCharacter.obj"), false);
@@ -157,8 +163,8 @@ public class TestRuang {
                     m));
 
 
-
-            Ruang.get(0).getChildObject().get(0).getChildObject().get(1).translateObject(-10.1f,1.0f,7.0f);
+            Ruang.get(0).getChildObject().get(0).getChildObject().get(1).rotateObject((float)Math.toRadians(60.0f), 0.0f, -1.0f, 0.0f);
+            Ruang.get(0).getChildObject().get(0).getChildObject().get(1).translateObject(-12.7f,1.0f,5.8f);
             Ruang.get(0).getChildObject().get(0).getChildObject().get(1).scaleObject(1.0f,1.4f,1.2f);
 
             //Dinding Kiri 2
@@ -893,6 +899,8 @@ public class TestRuang {
 
     Vector3f baseCam = new Vector3f(0f, 2.3f, 0f);
 
+    Vector3f baseCharPos = new Vector3f(0.0f, 0.0f, 0.0f);
+
     public void input() {
         //( 9.949E+0  1.275E+1 -9.942E+0)
 //        ( 9.994E+0  1.279E+1  1.798E+1)
@@ -933,12 +941,14 @@ public class TestRuang {
 
         //get posisi camera pada karakter
         Vector3f characterPos = player.getPosition();
-        Vector3f cameraPosition = new Vector3f(characterPos.x + baseCam.x, characterPos.y + baseCam.y, characterPos.z + baseCam.z);
+        //asumsi kamera dan karakter ga bisa naik dan turun
+        Vector3f cameraPosition = new Vector3f(characterPos.x + baseCam.x, baseCam.y, characterPos.z + baseCam.z);
 
         if (window.isKeyPressed(GLFW_KEY_W)) {
             Vector3f forward = camera.getForwardVector().mul(player.getCurrSpeed());
             Vector3f newPosition = player.getPosition().add(forward);
-            player.setPosition(newPosition.x, newPosition.y, newPosition.z);
+            //karakter ga bisa naik turun
+            player.setPosition(newPosition.x, baseCharPos.y, newPosition.z);
 
             // Mengatur posisi kamera sesuai objectnya
             camera.setPosition(cameraPosition.x,cameraPosition.y,cameraPosition.z);
@@ -949,7 +959,7 @@ public class TestRuang {
         } else if (window.isKeyPressed(GLFW_KEY_S)) {
             Vector3f backward = camera.getForwardVector().mul(-player.getCurrSpeed());
             Vector3f newPosition = player.getPosition().add(backward);
-            player.setPosition(newPosition.x, newPosition.y, newPosition.z);
+            player.setPosition(newPosition.x, baseCharPos.y, newPosition.z);
 
             camera.setPosition(cameraPosition.x,cameraPosition.y,cameraPosition.z);
 
@@ -960,7 +970,7 @@ public class TestRuang {
         if (window.isKeyPressed(GLFW_KEY_A)) {
             Vector3f left = camera.getRightVector().mul(-player.getCurrSpeed());
             Vector3f newPosition = player.getPosition().add(left);
-            player.setPosition(newPosition.x, newPosition.y, newPosition.z);
+            player.setPosition(newPosition.x, baseCharPos.y, newPosition.z);
 
             camera.setPosition(cameraPosition.x,cameraPosition.y,cameraPosition.z);
 
@@ -970,7 +980,7 @@ public class TestRuang {
         } else if (window.isKeyPressed(GLFW_KEY_D)) {
             Vector3f right = camera.getRightVector().mul(player.getCurrSpeed());
             Vector3f newPosition = player.getPosition().add(right);
-            player.setPosition(newPosition.x, newPosition.y, newPosition.z);
+            player.setPosition(newPosition.x, baseCharPos.y, newPosition.z);
 
             camera.setPosition(cameraPosition.x,cameraPosition.y,cameraPosition.z);
 
@@ -982,25 +992,25 @@ public class TestRuang {
 
         //Kontrol Player
         if (window.isKeyPressed(GLFW_KEY_LEFT_CONTROL)) {
-            camera.moveForward(0.5f);
+            camera.moveForward(0.2f);
         }
 
         if (window.isKeyPressed(GLFW_KEY_LEFT_ALT)) {
-            camera.moveBackwards(0.5f);
+            camera.moveBackwards(0.2f);
         }
         if (window.isKeyPressed(GLFW_KEY_DOWN)) {
-            camera.moveDown(0.5f);
+            camera.moveDown(0.2f);
         }
 
         if (window.isKeyPressed(GLFW_KEY_UP)) {
-            camera.moveUp(0.5f);
+            camera.moveUp(0.2f);
         }
         if (window.isKeyPressed(GLFW_KEY_LEFT)) {
-            camera.moveLeft(0.5f);
+            camera.moveLeft(0.2f);
         }
 
         if (window.isKeyPressed(GLFW_KEY_RIGHT)) {
-            camera.moveRight(0.5f);
+            camera.moveRight(0.2f);
         }
 
         if (window.getMouseInput().isLeftButtonPressed()){
@@ -1071,10 +1081,7 @@ public class TestRuang {
                 counterFlashLight+= 1;
             }
         }
-
-
     }
-
 
     public void loop() {
 
@@ -1090,6 +1097,8 @@ public class TestRuang {
             for (Object obj3D : Ruang) {
                 obj3D.draw(camera, projection,gelap,flashLight);
             }
+            skyBox.draw(camera,projection);
+
 //            System.out.println("Cam X"+camera.getPosition().get(0));
 //            System.out.println("Cam Y"+camera.getPosition().get(1));
 //            System.out.println("Cam Z"+camera.getPosition().get(2));

@@ -17,37 +17,7 @@ public class Player extends Sphere{
         super(shaderModuleDataList, vertices, color, r, centerPoint, rX, rY, rZ, stackCount, sectorCount, m);
     }
 
-    public void checkInputs(String direction, Player p){
-        if(direction == "f")
-        {
-            currSpeed = -moveSpeed;
-        }
-        else if(direction == "b")
-        {
-            currSpeed = moveSpeed;
-        }
-        else
-        {
-            currSpeed = 0;
-        }
-        if(direction == "r")
-        {
-            currRotateSpeed = rotateSpeed;
-            currSpeed = -moveSpeed;
 
-        }
-        else if(direction == "l")
-        {
-            currSpeed = moveSpeed;
-
-            currRotateSpeed = -rotateSpeed;
-        }
-        else
-        {
-
-            currRotateSpeed = 0;
-        }
-    }
     public void move(String direction, Player p)
     {
         //checkInputs(direction,p);

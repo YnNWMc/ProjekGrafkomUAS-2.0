@@ -23,6 +23,7 @@ public class TestRuang {
         Camera camera = new Camera();
         Projection projection = new Projection(window.getWidth(), window.getHeight());
         Player player ;
+        ghost ghost;
         boolean gelap = false;
         int counterLampu =0;
         boolean flashLight = false;
@@ -63,7 +64,6 @@ public class TestRuang {
             //skybox
             skyBox = new SkyBox();
 
-
             try{
                 m = ObjLoader.loadModelwFace(new File("Project Grafkom-22/Main/src/blenderAssets/mainCharacter.obj"), false);
             }catch(FileNotFoundException e){
@@ -72,6 +72,7 @@ public class TestRuang {
                 e.printStackTrace();
             }
 
+            //player
             player = new Player(
                     shaderModuleDataList,
                     new ArrayList<>(
@@ -88,6 +89,30 @@ public class TestRuang {
             player.scaleObject(2.5f,2.5f,2.5f);
             player.rotateObject(1f,0f,0f,0f);
 
+            //player ghost
+            try{
+                m = ObjLoader.loadModelwFace(new File("Project Grafkom-22/Main/src/blenderAssets/kodama.obj"), false);
+            }catch(FileNotFoundException e){
+                e.printStackTrace();
+            }catch (IOException e){
+                e.printStackTrace();
+            }
+            ghost = new ghost(
+                    shaderModuleDataList,
+                    new ArrayList<>(
+                    ),
+                    new Vector4f(255f/255, 255f/255, 255/255, 1.0f/255),
+                    0.0,
+                    new ArrayList<>(List.of(0f, 0f, 0f)),
+                    10.0f,
+                    10f,
+                    10f,
+                    15, // Stack -->
+                    30, // Sector --> Titik
+                    m);
+            ghost.scaleObject(0.2f,0.2f,0.2f);
+            ghost.rotateObject(1f,0f,0f,0f);
+            ghost.translateObject(5.5f,0.0f,-8.8f);
 
             //Lantai
             Ruang.add(new Sphere(
@@ -907,6 +932,7 @@ public class TestRuang {
 //        System.out.println(camera.getPositionZ());
 
 
+        //kontrol kamera cctv
         if (window.isKeyPressed(GLFW_KEY_2) || window.isKeyPressed(GLFW_KEY_3)) {
             hold=true;
         }
@@ -935,10 +961,10 @@ public class TestRuang {
                 camera.setPosition(tempCam.x, tempCam.y, tempCam.z);
                 camera.setRotation(tempRotate.x, tempRotate.y);
                 fromCCTV = false;
-
             }
         }
 
+        //kontrol main character
         //get posisi camera pada karakter
         Vector3f characterPos = player.getPosition();
         //asumsi kamera dan karakter ga bisa naik dan turun
@@ -1004,6 +1030,20 @@ public class TestRuang {
 
         //update matrix player
         player.updateModelMatrix();
+
+
+        //kontrol hantu
+        if (window.isKeyPressed(GLFW_KEY_I)) {
+            ghost.move("f", ghost);
+        }else if(window.isKeyPressed(GLFW_KEY_K)) {
+            ghost.move("b", ghost);
+        }else if(window.isKeyPressed(GLFW_KEY_L)) {
+            ghost.move("l", ghost);
+        }
+        else if(window.isKeyPressed(GLFW_KEY_J)) {
+            ghost.move("r", ghost);
+        }
+
 
         //Kontrol Player
         if (window.isKeyPressed(GLFW_KEY_LEFT_CONTROL)) {
@@ -1102,6 +1142,7 @@ public class TestRuang {
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
             input();
             player.draw(camera, projection,gelap,flashLight);
+            ghost.draw(camera, projection,gelap,flashLight);
 
             for (Object obj3D : Ruang) {
                 obj3D.draw(camera, projection,gelap,flashLight);

@@ -56,7 +56,7 @@ public class TestRuang {
             glDepthFunc(GL_LEQUAL);
             glDepthRange(0.0f, 1.0f);
 
-            camera.setPosition(0.0f, 2.3f, 0.5f);
+            camera.setPosition(0.0f, 2.0f, 0.0f);
 
             camera.setRotation((float) Math.toRadians(0.0f), (float) Math.toRadians(180.0f));
 
@@ -894,10 +894,10 @@ public class TestRuang {
 //    float tempCamY = camera.getPositionY();
 //    float tempCamZ = camera.getPositionZ();
     Vector3f firsttempCam;
-    Vector3f tempCam = new Vector3f(0.0f, 2.3f, 0.5f);
+    Vector3f tempCam = new Vector3f(0.0f, 2.0f, 0.0f);
     Vector2f tempRotate = new Vector2f((float) Math.toRadians(0.0f), (float) Math.toRadians(180.0f));
 
-    Vector3f baseCam = new Vector3f(0f, 2.3f, 0f);
+    Vector3f baseCam = new Vector3f(0f, 2.0f, 0.0f);
 
     Vector3f baseCharPos = new Vector3f(0.0f, 0.0f, 0.0f);
 
@@ -987,6 +987,21 @@ public class TestRuang {
 
             tempCam = new Vector3f(cameraPosition.x,cameraPosition.y,cameraPosition.z);
         }
+
+        if (window.getMouseInput().isLeftButtonPressed()){
+            Vector2f displayVec = window.getMouseInput().getDisplVec();
+//            camera.addRotation(tempRotate.x, (float) Math.toRadians(displayVec.y * 0.1f));
+            camera.addRotation((float) Math.toRadians(displayVec.x * 0.1f), (float) Math.toRadians(displayVec.y * 0.1f));
+
+            Vector3f tempCenterPoint = player.updateCenterPoint();
+            player.translateObject(tempCenterPoint.x * -1, tempCenterPoint.y * -1, tempCenterPoint.z * -1);
+
+            player.rotateObject((float) Math.toRadians(displayVec.y * 0.1f), 0.0f, 1.0f, 0.0f);
+            player.translateObject(tempCenterPoint.x * 1, tempCenterPoint.y * 1, tempCenterPoint.z * 1);
+
+            tempRotate = new Vector2f (camera.getRotationX(), camera.getRotationY());
+        }
+
         //update matrix player
         player.updateModelMatrix();
 
@@ -1013,13 +1028,7 @@ public class TestRuang {
             camera.moveRight(0.2f);
         }
 
-        if (window.getMouseInput().isLeftButtonPressed()){
-            Vector2f displayVec = window.getMouseInput().getDisplVec();
-//            camera.addRotation(tempRotate.x, (float) Math.toRadians(displayVec.y * 0.1f));
-            camera.addRotation((float) Math.toRadians(displayVec.x * 0.1f), (float) Math.toRadians(displayVec.y * 0.1f));
 
-            tempRotate = new Vector2f (camera.getRotationX(), camera.getRotationY());
-        }
 
         if (window.getMouseInput().getScroll().y != 0){
             projection.setFOV(projection.getFOV()-(window.getMouseInput().getScroll().y*0.01f));

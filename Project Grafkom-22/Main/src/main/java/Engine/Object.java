@@ -18,7 +18,7 @@ import static org.lwjgl.opengl.GL30.glBindVertexArray;
 import static org.lwjgl.opengl.GL30.glGenVertexArrays;
 
 
-public class Object extends ShaderProgram implements Collideable{
+public class Object extends ShaderProgram{
     List<Vector3f> vertices;
     List<Vector3f>verticesColor;
 
@@ -268,6 +268,15 @@ public class Object extends ShaderProgram implements Collideable{
 
     public void setRotation(Quaternionf rotation) {
         this.rotation = rotation;
+    }
+    public List<Vector3f> getUpdatedVertice (){
+        List<Vector3f> temp = new ArrayList<>();
+        for (int i = 0; i < vertices.size(); i++) {
+            Vector4f transformedVertex = new Vector4f(vertices.get(i), 1.0f);
+            model.transform(transformedVertex);
+            temp.add(new Vector3f(transformedVertex.x, transformedVertex.y, transformedVertex.z));
+        }
+        return temp;
     }
 }
 

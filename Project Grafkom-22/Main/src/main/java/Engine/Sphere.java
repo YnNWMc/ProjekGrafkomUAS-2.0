@@ -1,7 +1,5 @@
 package Engine;
-import org.apache.commons.math3.geometry.euclidean.threed.Vector3D;
 
-import org.apache.commons.math3.geometry.spherical.twod.Vertex;
 import org.joml.Matrix4f;
 import org.joml.Vector3f;
 import org.joml.Vector4f;
@@ -40,8 +38,6 @@ public class Sphere extends Circle3D {
         this.sectorCount = sectorCount;
         this.m = m;
         createImport();
-        calculateBoundingBox();
-        boundingBox = new BoundingBox(getWidth(),getHeight(),getDepth());
         setupVAOVBO();
     }
 
@@ -80,8 +76,6 @@ public class Sphere extends Circle3D {
             createPotato();
         }
 
-        calculateBoundingBox();
-        boundingBox = new BoundingBox(getWidth(),getHeight(),getDepth());
         setupVAOVBO();
     }
 
@@ -744,79 +738,6 @@ public class Sphere extends Circle3D {
 
     }
 
-    public double sdfTriangle(Vector3D p, Vector3D a, Vector3D b, Vector3D c) {
-        Vector3D ba = b.subtract(a);
-        Vector3D pa = p.subtract(a);
-        Vector3D cb = c.subtract(b);
-        Vector3D pb = p.subtract(b);
-        Vector3D ac = a.subtract(c);
-        Vector3D pc = p.subtract(c);
-        Vector3D nor = ba.crossProduct(ac);
-
-
-        return Math.sqrt((Math.signum(dot3(cross3(ba, nor), pa)) +
-                Math.signum(dot3(cross3(cb, nor), pb)) +
-                Math.signum(dot3(cross3(ac, nor), pc)) < 2.0) ?
-                Math.min(Math.min(
-                                dot2(subtract2(multiply2(ba, constrain(dot3(ba, pa) / dot2(ba), 0.0, 1.0)), pa)),
-                                dot2(subtract2(multiply2(cb, constrain(dot3(cb, pb) / dot2(cb), 0.0, 1.0)), pb)) ),
-                        dot2(subtract2(multiply2(ac, constrain(dot3(ac, pc) / dot2(ac), 0.0, 1.0)), pc)) ) :
-                dot3(nor, pa) * dot3(nor, pa) / dot2(nor));
-    }
-
-    public double dot2(Vector3D v) {
-        return dot3(v, v);
-    }
-
-    public double dot3(Vector3D v1, Vector3D v2) {
-        return v1.dotProduct(v2);
-    }
-
-    public Vector3D cross3(Vector3D v1, Vector3D v2) {
-        return v1.crossProduct(v2);
-    }
-
-    public Vector3D subtract2(Vector3D v1, Vector3D v2) {
-        return v1.subtract(v2);
-    }
-
-    public Vector3D multiply2(Vector3D v, double scalar) {
-        return v.scalarMultiply(scalar);
-    }
-
-    public double constrain(double value, double min, double max) {
-        return Math.min(Math.max(value, min), max);
-    }
-
-    public boolean detectCollision(Vector3D p, double thresh) {
-        List<Vector3f> vertices = this.getVertices();
-
-        for (int i = 0; i < vertices.size()/3; i++) {
-            Vector3D a = new Vector3D(
-                    vertices.get(i).x + position.x,
-                    vertices.get(i).y + position.y,
-                    vertices.get(i).z + position.z
-            );
-            Vector3D b = new Vector3D(
-                    vertices.get(i+1).x + position.x,
-                    vertices.get(i+1).y + position.y,
-                    vertices.get(i+1).z + position.z
-            );
-            Vector3D c = new Vector3D(
-                    vertices.get(i+2).x + position.x,
-                    vertices.get(i+2).y + position.y,
-                    vertices.get(i+2).z + position.z
-            );
-
-
-            if (sdfTriangle(p, a, b, c) < thresh) {
-                System.out.println("COLLIDE");
-                return true;
-            }
-        }
-        System.out.println("GA COLLIDE");
-        return false;
-    }
 
     public BoundingBox getBoundingBox() {
         return boundingBox;
@@ -826,13 +747,6 @@ public class Sphere extends Circle3D {
         this.boundingBox = boundingBox;
     }
 
-    public float getWidth() {
-        return maxX - minX;
-    }
-
-    public float getHeight() {
-        return maxY - minY;
-    }
 
     public float getDepth() {
         return maxZ - minZ;

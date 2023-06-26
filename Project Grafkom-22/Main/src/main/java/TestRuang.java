@@ -1,6 +1,5 @@
 import Engine.*;
 import Engine.Object;
-import org.apache.commons.math3.geometry.euclidean.threed.Vector3D;
 import org.joml.Vector2f;
 import org.joml.Vector3f;
 import org.joml.Vector4f;
@@ -1149,6 +1148,13 @@ public class TestRuang {
             }
             skyBox.draw(camera,projection);
 
+            for (int i = 0; i <Ruang.get(0).getChildObject().size(); i++) {
+                if (CheckCollide.checkCollision(player.getUpdatedVertice(),
+                        Ruang.get(0).getChildObject().get(i).getUpdatedVertice())) {
+                    player.translateObject(0f,0.05f,0f);
+                    System.out.println("COLLIDE");
+                }
+            }
 //            System.out.println("Cam X"+camera.getPosition().get(0));
 //            System.out.println("Cam Y"+camera.getPosition().get(1));
 //            System.out.println("Cam Z"+camera.getPosition().get(2));

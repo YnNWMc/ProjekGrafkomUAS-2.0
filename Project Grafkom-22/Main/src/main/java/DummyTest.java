@@ -1,4 +1,3 @@
-import org.apache.commons.math3.geometry.euclidean.threed.Vector3D;
 import Engine.*;
 import Engine.Object;
 import org.joml.Vector2f;
@@ -191,6 +190,7 @@ public class DummyTest {
             for (Object obj3D : Ruang) {
                 obj3D.draw(camera, projection,true,true);
             }
+
 
             skyBox.draw(camera,projection);
             System.out.println(player.CheckCollide(Ruang.get(0)));
